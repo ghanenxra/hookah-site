@@ -278,18 +278,7 @@
         String(now.getHours()).padStart(2,'0') +
         String(now.getMinutes()).padStart(2,'0') +
         String(now.getSeconds()).padStart(2,'0') + '.png';
-      // Try clipboard first, then download
-      if (navigator.clipboard && typeof ClipboardItem !== 'undefined') {
-        navigator.clipboard.write([
-          new ClipboardItem({ 'image/png': blob })
-        ]).then(function() {
-          showToast('Copied to clipboard \u2014 paste it anywhere.');
-        }).catch(function() {
-          download(blob, name);
-        });
-      } else {
-        download(blob, name);
-      }
+      download(blob, name);
     }, 'image/png');
   }
   function download(blob, name) {
